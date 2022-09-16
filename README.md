@@ -12,7 +12,7 @@ Main Challenge: Multidimensional Lists.
 
 HOW TO CONTRIBUTE AND HELP ME to LEARN MORE, even add new Features:
 - Please, when contributing, use only KOTLIN.
-- If you have suggestions in how to make cinema.kt cleaner, I would enjoy seeying.
+- If you have suggestions in how to make MAIN.KT cleaner, I would enjoy seeying.
 - Using different methods, libraries and functions would help me to increase my toolbelt.
 - If there's any issues that need my attention, please, let me know. I'm eager to learn. 
 
