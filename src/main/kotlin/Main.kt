@@ -25,36 +25,39 @@ fun main() {
         println("3. Statistics")
         println("0. Exit")
         val chosenOption = readln()
-        when (chosenOption){
+        when (chosenOption) {
             "1" -> layoutCinema(cinema)
             "2" -> {
                 buyTicket()
             }
+
             "3" -> statistics()
             "0" -> break
             else -> println("Invalid Input")
         }
     } while (chosenOption != "0")
 }
+
 // Table with rows and seats
 fun layoutCinema(cinema: MutableList<MutableList<Char>>) {
-    println( )
+    println()
     println("Cinema:")
     print("  ")
     var seatCount = 1
-    repeat (seatsPerRow) {
+    repeat(seatsPerRow) {
         print("$seatCount ")
         seatCount++
     }
     println()
     for (row in 1..numberRows) {
         print("$row ")
-        for (seat in 1..seatsPerRow){
+        for (seat in 1..seatsPerRow) {
             print("${cinema[row][seat]} ")
         }
         println()
     }
 }
+
 //Ticket Price
 fun buyTicket() {
     //Client chooses row and seat, each checking if option is available.
@@ -93,6 +96,7 @@ fun buyTicket() {
         return price()
     }
 }
+
 fun statistics() {
 // PURCHASED TICKETS (Number)
     // val purchasedTickets = cinema.flatten().count { it = 'B' }
