@@ -9,7 +9,9 @@ var currentIncome = 0
 var totalIncome = 0
 const val HIGHPRICE = 10
 const val LOWPRICE = 8
-val cinema = MutableList(numberRows + 1) { MutableList(seatsPerRow + 1) { 'S' } }
+
+//TODO Make the list dynamic and not limited to a 9x9 grid
+var cinema: MutableList<MutableList<Char>> = MutableList(numberRows + 1) { MutableList(seatsPerRow + 1) { 'S' } }
 
 fun main() {
     //Number of rows and seats per row
@@ -35,7 +37,7 @@ fun main() {
             "0" -> break
             else -> println("Invalid Input")
         }
-    } while (chosenOption != "0")
+    } while (chosenOption != "0") //FIXME Understand why this error is happening
 }
 
 // Table with rows and seats
@@ -59,7 +61,7 @@ fun layoutCinema(cinema: MutableList<MutableList<Char>>) {
 }
 
 //Ticket Price
-fun buyTicket() {
+fun buyTicket() { //TODO Try to make a Do-While instead of a recursion on buyticket()
     //Client chooses row and seat, each checking if option is available.
     println()
     println("Enter a row number:")
@@ -97,6 +99,7 @@ fun buyTicket() {
     }
 }
 
+//TODO Also for extra exercise, you can calculate the statistic from the cinema instead of using variables to keep track ticket bought and income.
 fun statistics() {
 // PURCHASED TICKETS (Number)
     // val purchasedTickets = cinema.flatten().count { it = 'B' }
