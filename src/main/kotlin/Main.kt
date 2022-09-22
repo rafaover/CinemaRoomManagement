@@ -9,9 +9,27 @@ var currentIncome = 0
 var totalIncome = 0
 const val HIGHPRICE = 10
 const val LOWPRICE = 8
+//TODO save a variable for (numberRows * seatsPerRow)
 
 //TODO Make the list dynamic and not limited to a 9x9 grid
 var cinema: MutableList<MutableList<Char>> = MutableList(numberRows + 1) { MutableList(seatsPerRow + 1) { 'S' } }
+
+/** TODO Suggestion from NotKamui "create a 1D List with methods to convert an index to 2D coordinates, and reciprocate"
+ * class Table2D<T>(val width: Int, val height: Int, default: () -> T) {
+    private val inner = MutableList<T>(width * height) { default()
+    }
+    private fun coordToIndex(x: Int, y: Int) = x + y * width
+    operator fun get(x: Int, y: Int) = inner[coordToIndex(x, y)]
+    operator fun set(x: Int, y: Int, value: T) {
+        inner[coordToIndex(x, y)] = value
+    }
+}
+ *
+ * val seats = Table2D<Person?>(3, 3) { null }
+    seats[1, 2] = Person("John")
+    println(seats[1, 2])
+ *
+ */
 
 fun main() {
     //Number of rows and seats per row
@@ -65,13 +83,13 @@ fun buyTicket() { //TODO Try to make a Do-While instead of a recursion on buytic
     //Client chooses row and seat, each checking if option is available.
     println()
     println("Enter a row number:")
-    selectedRow = readln().toInt()
+    selectedRow = readln().toInt() //TODO add an exception handler. NumberFormatException.
     if (selectedRow > numberRows) {
         println("Wrong Input!")
         return buyTicket()
     }
     println("Enter a seat number in that row:")
-    selectedSeat = readln().toInt()
+    selectedSeat = readln().toInt() //TODO add an exception handler. IndexOutOfBounds.
     if (selectedSeat > seatsPerRow) {
         println("Wrong Input!")
         return buyTicket()
@@ -85,7 +103,15 @@ fun buyTicket() { //TODO Try to make a Do-While instead of a recursion on buytic
     } else {
         cinema[selectedRow][selectedSeat] = 'B'
         purchasedTickets++
-        //Printing ticket price
+
+        //Printing ticket price -- suggested code by aaulia
+        val price = if (numberRows * seatsPerRow <= 60 || selectedRow <= numberRows / 2) HIGHPRICE else LOWPRICE
+        currentIncome += price
+        println("Ticket Price: $price")
+        return
+
+        //TODO remember to delete OLD CODE
+        /** OLD CODE
         val price = {
             if (numberRows * seatsPerRow <= 60 || selectedRow <= numberRows / 2) {
                 currentIncome += HIGHPRICE
@@ -95,7 +121,7 @@ fun buyTicket() { //TODO Try to make a Do-While instead of a recursion on buytic
                 println("Ticket Price: $${LOWPRICE}")
             }
         }
-        return price()
+        return price() **/
     }
 }
 
